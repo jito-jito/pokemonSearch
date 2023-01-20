@@ -10,4 +10,8 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class PaginationComponent {
 	page = 1;
+
+	onChangePage(changes: any) {
+		console.log(changes)
+	}
 }

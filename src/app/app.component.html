@@ -1,17 +1,32 @@
-<div class="text-success">
+<header class="vh-7 bg-primary text-white">
+	<div class="container h-100 py-1 d-flex align-items-center">
+		<img class="logo-img" src=" ../assets/images/pokeball.png" alt="">
+		<h2 class="m-0">PokeTest</h2>
+	</div>
+</header>
+<main class="min-vh-92 py-3 container d-flex flex-column align-items-center">
+	<h1 class="text-center mb-2">Search your favorite pokemon!</h1>
+	
+	<app-typeahead></app-typeahead>
+	
+	<div>
+		<h2>results</h2>
+	</div>
+	
+	<app-pagination></app-pagination>
+</main>
+<footer class="bg-secondary text-white">
+	<div class="container">
+		<p class="m-0 text-center"> footer </p>
+	</div>
+</footer>
+<!-- <div class="text-success">
   initial config with bootstrap and 
 </div>
 
 <p>A pagination compnent :D</p>
-<ngb-pagination
-	[collectionSize]="120"
-	[(page)]="page"
-	[maxSize]="5"
-	[rotate]="true"
-	[ellipses]="false"
-	[boundaryLinks]="true"
-></ngb-pagination>
+
 
 <hr />
 
-<pre>Current page: {{page}}</pre>
+<pre>Current page: {{page}}</pre> -->

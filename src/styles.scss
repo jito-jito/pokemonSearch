@@ -1,4 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+$primary: #ef5350;
+$secondary: #263238;
+
+$utilities: (
+  "min-viewport-height": (
+    property: min-height,
+    responsive: true,
+    class: min-vh,
+    values: (
+      90: 90vh,
+      92: 92vh,
+      100: 100vh
+    )
+  ),
+  "viewport-height": (
+    property: height,
+    responsive: true,
+    class: vh,
+    values: (
+      5: 5vh,
+      7: 7vh,
+      10: 10vh,
+      15: 15vh,
+      25: 25vh,
+      50: 50vh,
+    )
+  ),
+  "viewport-width": (
+    property: width,
+    responsive: true,
+    class: vw,
+    values: (
+      5: 5vw,
+      10: 10vw,
+      15: 15vw,
+      25: 25vw,
+      50: 50vw,
+    )
+  )
+);
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

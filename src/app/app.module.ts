@@ -6,6 +6,7 @@ import { HttpClientModule }  from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PaginationComponent } from './shared/components/pagination/pagination.component';
+import { TypeaheadComponent } from './shared/components/typeahead/typeahead.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { PaginationComponent } from './shared/components/pagination/pagination.c
     NgbModule,
     HttpClientModule,
     PaginationComponent,
+    TypeaheadComponent,
     SharedModule
   ],
   providers: [],

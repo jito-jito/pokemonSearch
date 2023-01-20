@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaginationComponent } from './components/pagination/pagination.component';
-
-
+import { PokemonItemComponent } from './components/pokemon-item/pokemon-item.component';
 
 @NgModule({
   declarations: [
-
+  
+    PokemonItemComponent
   ],
   imports: [
     CommonModule
