@@ -4,13 +4,13 @@ import { PokemonItemComponent } from './components/pokemon-item/pokemon-item.com
 
 @NgModule({
   declarations: [
-  
     PokemonItemComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
+    PokemonItemComponent
   ]
 })
 export class SharedModule { }
