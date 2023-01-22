@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { StoreService } from '../../services/store.service';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, OperatorFunction } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { Observable, OperatorFunction, map } from 'rxjs';
+import { debounceTime, distinctUntilChanged  } from 'rxjs/operators';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 
@@ -22,9 +23,13 @@ import { JsonPipe } from '@angular/common';
 
 
 
-export class TypeaheadComponent {
+export class TypeaheadComponent implements OnInit {
 	public model: any;
   
+	constructor (
+		private storeService: StoreService
+	) {	}
+	
   states = [
     'I need to add the names of the pokemons here',
     'pikachiu',
@@ -38,5 +43,17 @@ export class TypeaheadComponent {
 			map((term) =>
 				term.length < 2 ? [] : this.states.filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10),
 			),
-		);
+	);
+
+	ngOnInit() {
+		this.storeService.pokemonResourceList$
+		.pipe(
+			map(data => data.results.map(data => data.name))
+		)
+		.subscribe({
+			next: (data) => {
+				this.states = data
+			}
+		})
+	}
 }
