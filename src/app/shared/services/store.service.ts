@@ -14,6 +14,8 @@ export class StoreService {
       url: ''
     }]
   })
+  resultsContainer = []
+  
   pokemonResourceList$ = this.pokemonResourceList.asObservable()
 
   constructor() { }

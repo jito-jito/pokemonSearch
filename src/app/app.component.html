@@ -7,34 +7,32 @@
 <main class="min-vh-92 py-3 container d-flex flex-column align-items-center">
 	<h1 class="text-center my-3">Search your favorite pokemon!</h1>
 	
-	<app-typeahead></app-typeahead>
-	
-	<div class="container">
-		<h3 class="text-center my-3">Or view for a pokemon👇</h3>
-		<div class="row row-cols-auto gy-4 justify-content-center mb-3">
-			<app-pokemon-item class="col" ></app-pokemon-item>
-			<app-pokemon-item class="col" ></app-pokemon-item>
-			<app-pokemon-item class="col" ></app-pokemon-item>
-			<app-pokemon-item class="col" ></app-pokemon-item>
-			<app-pokemon-item class="col" ></app-pokemon-item>
-			<app-pokemon-item class="col" ></app-pokemon-item>
+	<div class="container d-flex flex-column">
+		<app-typeahead [searchValue]="searchValue"  (changeInput)="changeSearchValue($event)" class="d-flex- flex-column justify-content-center align-items-center" />
+		<div class="d-flex align-items-center justify-content-center mt-2">
+			<button [disabled]="searchValue.length <= 3" type="button" class=" btn btn-primary text-white fw-bold" (click)="searchPokemon(searchValue)">Search</button>
 		</div>
 	</div>
 	
-	<app-pagination></app-pagination>
+	<div class="container">
+		<ng-container *ngIf="!pokemonResult; else pokemonSearch">
+			<h3 class="text-center my-3">Or search in the list with all pokemons👇</h3>
+			<div class="row row-cols-auto gy-4 justify-content-center mb-3">
+				<app-pokemon-item [pokemonData]="pokemonResult || notFoundPokemon" class="col" ></app-pokemon-item>
+			</div>
+		</ng-container>
+		<ng-template #pokemonSearch>
+			<div class="vh-50 d-flex flex-column align-items-center justify-content-center">
+				<app-pokemon-item  [pokemonData]="pokemonResult || notFoundPokemon"/>
+				<button class="btn btn-secondary mt-5 text-white fw-bold" type="button" (click)="resetSearch()">back with all pokemons</button>
+			</div>
+		</ng-template>
+	</div>
+	
+	<app-pagination *ngIf="!pokemonResult"></app-pagination>
 </main>
 <footer class="bg-secondary text-white">
 	<div class="container">
-		<p class="m-0 text-center"> footer </p>
+		<p class="m-0 text-center">Developed by jito-jito 🤸‍♂️</p>
 	</div>
 </footer>
-<!-- <div class="text-success">
-  initial config with bootstrap and 
-</div>
-
-<p>A pagination compnent :D</p>
-
-
-<hr />
-
-<pre>Current page: {{page}}</pre> -->

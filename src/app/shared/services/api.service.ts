@@ -6,14 +6,19 @@ import { PokemonResourceList } from 'src/app/models/pokemon.model';
   providedIn: 'root'
 })
 export class ApiService {
-
-  API = 'https://pokeapi.co/api/v2/pokemon?limit=2000'
+  private base_API = 'https://pokeapi.co/api/v2'
 
   constructor(
     private http: HttpClient 
   ) { }
 
   getPokemonResourceList() {
-    return this.http.get<PokemonResourceList>(this.API)
+    const resourceUrl = '/pokemon?limit=2000'
+    return this.http.get<PokemonResourceList>(`${this.base_API}${resourceUrl}`)
+  }
+
+  getPokemonByName(pokemonName : string) {
+    const resourceUrl = `/pokemon/${pokemonName}`
+    return this.http.get(`${this.base_API}${resourceUrl}`)
   }
 }

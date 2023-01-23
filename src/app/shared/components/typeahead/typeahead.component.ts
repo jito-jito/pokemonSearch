@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { StoreService } from '../../services/store.service';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, OperatorFunction, map } from 'rxjs';
@@ -24,17 +24,18 @@ import { JsonPipe } from '@angular/common';
 
 
 export class TypeaheadComponent implements OnInit {
-	public model: any;
-  
+	@Input() searchValue = ''
+	@Output() changeInput = new EventEmitter<string>()
+	states = [
+		'I need to add the names of the pokemons here',
+		'pikachiu',
+		'chariziard' // added as examples xd
+	];
+
 	constructor (
 		private storeService: StoreService
 	) {	}
 	
-  states = [
-    'I need to add the names of the pokemons here',
-    'pikachiu',
-    'chariziard' // added as examples xd
-  ];
 
 	search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
 		text$.pipe(
@@ -55,5 +56,9 @@ export class TypeaheadComponent implements OnInit {
 				this.states = data
 			}
 		})
+	}
+
+	onChangeValue() {
+		this.changeInput.emit(this.searchValue)
 	}
 }
