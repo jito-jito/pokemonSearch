@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http' 
-import { PokemonResourceList } from 'src/app/models/pokemon.model';
+import { PokemonResourceList, Pokemon } from 'src/app/models/pokemon.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +20,9 @@ export class ApiService {
   getPokemonByName(pokemonName : string) {
     const resourceUrl = `/pokemon/${pokemonName}`
     return this.http.get(`${this.base_API}${resourceUrl}`)
+  }
+
+  getPokemonByUrl(url: string) {
+    return this.http.get<Pokemon>(url)
   }
 }

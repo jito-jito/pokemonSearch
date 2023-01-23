@@ -1,10 +1,10 @@
 <ngb-pagination
-		[collectionSize]="1200"
-    [pageSize]="10"
+		[collectionSize]="collectionSize"
+		[pageSize]="pageSize"
 		[(page)]="page"
 		[maxSize]="5"
 		[rotate]="true"
 		[ellipses]="false"
 		[boundaryLinks]="true"
     (pageChange)="onChangePage($event)"
-	></ngb-pagination>
+/>

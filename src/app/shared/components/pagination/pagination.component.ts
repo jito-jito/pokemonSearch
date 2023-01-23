@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { StoreService } from '../../services/store.service';
 
 @Component({
 	selector: 'app-pagination',
@@ -8,10 +9,28 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 	standalone: true,
 	imports: [NgbPaginationModule],
 })
-export class PaginationComponent {
-	page = 1;
+export class PaginationComponent implements OnInit {
+	@Input() collectionSize = 0
+	@Input() pageSize = 0
+	@Input() page = 1;
+
+	@Output() changePage = new EventEmitter() 
+
+	constructor(
+		private storeService: StoreService
+	) {}
 
 	onChangePage(changes: any) {
-		console.log(changes)
+		this.changePage.emit(changes)
+	}
+
+	ngOnInit() {
+		this.storeService.paginationConfig$
+		.subscribe({
+			next: (paginationConfig) => {
+				this.collectionSize = paginationConfig.collectionSize
+				this.pageSize = paginationConfig.pageSize
+			}
+		})
 	}
 }
