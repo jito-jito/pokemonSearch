@@ -18,9 +18,8 @@
 		<ng-container *ngIf="!pokemonResult; else pokemonSearch">
 			<h3 class="text-center my-3">Or search in the list with all pokemons👇</h3>
 			<div *ngIf="!loadingRessults" class="row row-cols-auto gy-4 justify-content-center mb-3">
-				<ng-container *ngFor="let pokemonResource of resourceOfPokemons | slice: (page-1) * pageSize : page * pageSize">
-					<app-pagination-results [pokemonResource]="pokemonResource" />
-				</ng-container>
+				<app-pagination-results  [pokemonResource]="resourceOfPokemons | slice: (page-1) * pageSize : page * pageSize">
+				</app-pagination-results>
 				<!-- <app-pokemon-item [pokemonData]="pokemonResult || notFoundPokemon" class="col" ></app-pokemon-item> -->
 			</div>
 		</ng-container>

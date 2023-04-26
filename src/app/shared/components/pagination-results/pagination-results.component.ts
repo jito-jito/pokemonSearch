@@ -9,7 +9,14 @@ import  { Pokemon } from '../../../models/pokemon.model'
   
 })
 export class PaginationResultsComponent implements OnInit {
-  @Input() pokemonResource: {name: string, url: string} = {name: '', url: ''}
+  @Input()
+  get pokemonResource() {
+    return this.resourcePromises
+  }
+  set pokemonResource(resource: {name: string, url: string}[]) {
+    this.resourcePromises = resource.map((data) => data.url)
+  }
+  resourcePromises: string[] = []
   pokemonData: Pokemon = {
     id: 0,
     name: '',
@@ -31,9 +38,16 @@ export class PaginationResultsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiservice.getPokemonByUrl(this.pokemonResource.url)
-    .subscribe({
-      next: (data) => this.pokemonData = data 
-    })
+    console.log(this.pokemonResource)
+    console.log(this.resourcePromises)
+    this.apiservice.getGroupOfPokemons(this.resourcePromises)
+    // this.apiservice.getPokemonByUrl(this.pokemonResource.url)
+    // .subscribe({
+    //   next: (data) => this.pokemonData = data 
+    // })
   }
+
+  // async getPagePokemons() {
+  //   Promise.all()
+  // }
 }

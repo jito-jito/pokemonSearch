@@ -25,4 +25,11 @@ export class ApiService {
   getPokemonByUrl(url: string) {
     return this.http.get<Pokemon>(url)
   }
+
+  getGroupOfPokemons(urls: string[]) {
+    const parseToFetch = urls.map((url) => fetch(url))
+
+    console.log(parseToFetch)
+  }
+
 }
